@@ -1,6 +1,6 @@
 // Set up vars
 const myBirthDay = '1996-11-29';
-const myLifeExpectancy = 60;
+const myLifeExpectancy = 61;
 const totalWeeksInLife = myLifeExpectancy * 52.1429; // As per the modern Gregorian calendar, one year is equal to 365 days whic is 52.1429 weeks in total
 
 /*
@@ -134,7 +134,11 @@ function write_life_event(life_event) {
 }
 
 events = [
-
+    {
+        'date': new Date(),
+        'description': 'Now',
+        'color': '#18aedb',
+      },
 ]
 
 let calendar = document.getElementById('calendar');
