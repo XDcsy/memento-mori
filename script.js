@@ -88,13 +88,9 @@ function spawn_year(_year, birthday) {
     return year_div;
 }
 
-// from https://stackoverflow.com/questions/1184334/get-number-days-in-a-specified-month-using-javascript
-// Month in JavaScript is 0-indexed (January is 0, February is 1, etc),
-// but by using 0 as the day it will give us the last day of the prior
-// month. So passing in 1 as the month number will return the last day
-// of January, not February
-function days_in_month (month, year) {
-    return new Date(year, month, 0).getDate();
+// see https://stackoverflow.com/a/27810609/7708392
+function days_in_month(m, y){
+  return m===2?y&3||!(y%25)&&y&15?28:29:30+(m+(m>>3)&1);
 }
 
 function get_week_id_from_date(date) {
