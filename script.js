@@ -130,11 +130,6 @@ function write_life_event(life_event) {
 }
 
 events = [
-    {
-        'date': new Date(),
-        'description': 'Now',
-        'color': '#18aedb',
-      },
 ]
 
 let calendar = document.getElementById('calendar');
