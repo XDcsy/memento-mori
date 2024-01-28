@@ -1,7 +1,37 @@
 // Set up vars
-const myBirthDay = '1996-11-29';
-const myLifeExpectancy = 61;
-const totalWeeksInLife = myLifeExpectancy * 52.1429; // As per the modern Gregorian calendar, one year is equal to 365 days whic is 52.1429 weeks in total
+// const myBirthDay = '1996-11-29';
+// const myLifeExpectancy = 61;
+// const totalWeeksInLife = myLifeExpectancy * 52.1429; // As per the modern Gregorian calendar, one year is equal to 365 days whic is 52.1429 weeks in total
+
+function getURLParameter(name) {
+    return new URLSearchParams(window.location.search).get(name);
+}
+
+function updateURLParameters(birthday, lifeExpectancy) {
+    const newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?birthday=' + birthday + '&lifeExpectancy=' + lifeExpectancy;
+    window.history.pushState({ path: newurl }, '', newurl);
+}
+
+document.getElementById('submit-button').addEventListener('click', function() {
+    const birthday = document.getElementById('birthdate-input').value;
+    const lifeExpectancy = document.getElementById('life-expectancy-input').value;
+  
+    if (birthday && lifeExpectancy) {
+      updateURLParameters(birthday, lifeExpectancy);
+      populate_calendar(new Date(birthday), lifeExpectancy);
+    }
+});
+
+window.onload = function() {
+    const urlBirthday = getURLParameter('birthday');
+    const urlLifeExpectancy = getURLParameter('lifeExpectancy');
+    if (urlBirthday && urlLifeExpectancy) {
+      document.getElementById('birthdate-input').value = urlBirthday;
+      document.getElementById('life-expectancy-input').value = urlLifeExpectancy;
+      populate_calendar(new Date(urlBirthday), urlLifeExpectancy);
+      // ... 更新 weeksLeft 和 stats ...
+    }
+};
 
 /*
   Calculate your life expectency
@@ -11,7 +41,8 @@ const totalWeeksInLife = myLifeExpectancy * 52.1429; // As per the modern Gregor
 */
 
 // Weeks left in life
-function returnWeeks(birthday) {
+function returnWeeks(birthday, lifeExpectancy) {
+  totalWeeksInLife = lifeExpectancy * 52.1429; // As per the modern Gregorian calendar, one year is equal to 365 days whic is 52.1429 weeks in total
   bday = new Date(birthday);
   var ageDifMs = Date.now() - bday.getTime();
   yearOfBirth = bday.getFullYear();
@@ -129,12 +160,12 @@ function write_life_event(life_event) {
     }
 }
 
-events = [
-]
+// events = [
+// ]
 
-let calendar = document.getElementById('calendar');
-populate_calendar(new Date(myBirthDay), myLifeExpectancy);
+// let calendar = document.getElementById('calendar');
+// populate_calendar(new Date(myBirthDay), myLifeExpectancy);
 
-events.forEach(e => {
-    write_life_event(e);
-});
+// events.forEach(e => {
+//     write_life_event(e);
+// });
