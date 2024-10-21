@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Memento Mori</string>
+    <string name="birthdate_hint">Enter your birthdate</string>
+    <string name="life_expectancy_hint">Enter your life expectancy</string>
+    <string name="submit_button_text">Show My Calendar</string>
+</resources>
